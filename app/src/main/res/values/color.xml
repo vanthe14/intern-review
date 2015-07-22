@@ -3,5 +3,6 @@
     <color name="main.title">#00bbd2</color>
     <color name="While">#ffffff</color>
     <color name="user.name">#505050</color>
-    <color name="button.back">#353844</color>
+    <color name="button.back">#0097a7</color>
+    <color name="bg.contact">#f9f9f9</color>
 </resources>

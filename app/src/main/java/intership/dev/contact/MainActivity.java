@@ -8,16 +8,27 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import intership.dev.fragment.Fragment_Main;
+import java.util.ArrayList;
+
+import intership.dev.fragment.MainFragment;
+import intership.dev.modal.User;
 
 
 public class MainActivity extends Activity {
+    ArrayList<User> mArraylist = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Fragment fragment_main = new Fragment_Main();
+        for (int i = 1; i < 10; i++) {
+            User user = new User();
+            user.setmAvatar(R.drawable.test);
+            user.setmName("asfasfaf" + i);
+            user.setmCheck(R.drawable.ic_check);
+            mArraylist.add(user);
+        }
+        Fragment fragment_main = new MainFragment(mArraylist);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_main, fragment_main);
@@ -44,5 +55,15 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

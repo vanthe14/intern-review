@@ -28,7 +28,7 @@ import intership.dev.contact.R;
         <attr name="border_color" format="color" />
     </declare-styleable>
  **/
- 
+
 public class CircleImageView extends ImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
