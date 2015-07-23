@@ -1,10 +1,12 @@
 package intership.dev.adaptor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,8 +69,30 @@ public class Adaptor_User extends BaseAdapter {
             holder.mBtnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mUser.remove(position);
-                    notifyDataSetChanged();
+                   // mUser.remove(position);
+                    //notifyDataSetChanged();
+                    AlertDialog.Builder b=new AlertDialog.Builder(mContext);
+
+                    b.setTitle("Question");
+                    b.setMessage("Are you sure you want to delete?");
+                    b.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }});
+                    b.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+
+                        @Override
+
+                        public void onClick(DialogInterface dialog, int which)
+
+                        {
+                            mUser.remove(position);
+                            notifyDataSetChanged();
+                        }
+
+                    });
+                    b.create().show();
                 }
             });
             holder.mBtnEdit.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +123,6 @@ public class Adaptor_User extends BaseAdapter {
         TextView mTxtName;
         ImageButton mBtnEdit;
         ImageButton mBtnDelete;
-
     }
 
     private void setValue(ViewHolder holder, int position) {
@@ -107,7 +130,5 @@ public class Adaptor_User extends BaseAdapter {
         user = getItem(position);
         holder.mImgAvatar.setImageResource(user.getmAvatar());
         holder.mTxtName.setText(user.getmName());
-
-
     }
 }

@@ -6,6 +6,15 @@ package intership.dev.modal;
 public class User {
     private int mAvatar;
 
+    public String getmDescripton() {
+        return mDescripton;
+    }
+
+    public void setmDescripton(String mDescripton) {
+        this.mDescripton = mDescripton;
+    }
+
+    private String mDescripton;
     public String getmName() {
         return mName;
     }
@@ -14,17 +23,8 @@ public class User {
         this.mName = mName;
     }
 
-    public int getmCheck() {
-        return mCheck;
-    }
-
-    public void setmCheck(int mCheck) {
-        this.mCheck = mCheck;
-    }
 
     private String mName;
-    private int mCheck;
-
     public int getmAvatar() {
         return mAvatar;
     }

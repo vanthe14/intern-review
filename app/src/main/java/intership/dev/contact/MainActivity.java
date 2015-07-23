@@ -24,8 +24,9 @@ public class MainActivity extends Activity {
         for (int i = 1; i < 10; i++) {
             User user = new User();
             user.setmAvatar(R.drawable.test);
-            user.setmName("asfasfaf" + i);
-            user.setmCheck(R.drawable.ic_check);
+            user.setmName("Name person" + i);
+            user.setmDescripton("Descripton"+i);
+
             mArraylist.add(user);
         }
         Fragment fragment_main = new MainFragment(mArraylist);

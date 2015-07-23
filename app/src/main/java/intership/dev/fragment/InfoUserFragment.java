@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -37,8 +38,12 @@ public class InfoUserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_info_user, container, false);
-        final TextView txt = (TextView) v.findViewById(R.id.tv_name);
-        txt.setText(mUser.get(mposition).getmName());
+        final TextView tv_name = (TextView) v.findViewById(R.id.tv_name);
+        ImageView img_avatar=(ImageView)v.findViewById(R.id.img_avatar);
+        EditText edt_Description=(EditText)v.findViewById(R.id.edt_Description);
+        tv_name.setText(mUser.get(mposition).getmName());
+        img_avatar.setImageResource(mUser.get(mposition).getmAvatar());
+        edt_Description.setText(mUser.get(mposition).getmDescripton());
         edt_name = (EditText) v.findViewById(R.id.edt_name);
         edt_name.setText(mUser.get(mposition).getmName());
         edt_name.addTextChangedListener(new TextWatcher() {
@@ -49,7 +54,7 @@ public class InfoUserFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                txt.setText(s);
+                tv_name.setText(s);
             }
 
             @Override
