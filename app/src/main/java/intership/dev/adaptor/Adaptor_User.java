@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import intership.dev.contact.MainActivity;
 import intership.dev.contact.R;
 import intership.dev.fragment.InfoUserFragment;
 import intership.dev.fragment.MainFragment;
@@ -29,7 +30,6 @@ import intership.dev.modal.User;
 public class Adaptor_User extends BaseAdapter {
     private Context mContext;
     private ArrayList<User> mUser;
-
     public Adaptor_User(Context mContext, ArrayList<User> mUser) {
         this.mUser = mUser;
         this.mContext = mContext;
@@ -72,9 +72,9 @@ public class Adaptor_User extends BaseAdapter {
                    // mUser.remove(position);
                     //notifyDataSetChanged();
                     AlertDialog.Builder b=new AlertDialog.Builder(mContext);
-
+                    b.setInverseBackgroundForced(false);
                     b.setTitle("Question");
-                    b.setMessage("Are you sure you want to delete?");
+                    b.setMessage("bạn có muốn xóa không?");
                     b.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -98,11 +98,12 @@ public class Adaptor_User extends BaseAdapter {
             holder.mBtnEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    Fragment fragment_main = new InfoUserFragment(mUser, position);
+                    Fragment fragment_infouser = new InfoUserFragment(mUser, position);
                     FragmentManager fragmentManager = ((Activity) mContext).getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.frame_main, fragment_main,"fragment_main").commit();
-                    fragmentManager.beginTransaction().addToBackStack("fragment_main");
+                    FragmentTransaction transaction= fragmentManager.beginTransaction();
+                    transaction.replace(R.id.frame_main, fragment_infouser);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
                     notifyDataSetChanged();
                 }
             });

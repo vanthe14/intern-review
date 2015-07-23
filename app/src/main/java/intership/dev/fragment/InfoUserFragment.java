@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -67,31 +68,30 @@ public class InfoUserFragment extends Fragment {
         btn_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String name = edt_name.getText().toString();
-                String Description=edt_Description.getText().toString();
+                String Description = edt_Description.getText().toString();
                 mUser.get(mposition).setmName(name);
                 mUser.get(mposition).setmDescripton(Description);
-                Fragment fragment_main = new MainFragment(mUser);
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_main, fragment_main,"fragment_main");
-                fragmentTransaction.addToBackStack("fragment_main");
-                fragmentTransaction.commit();
+                getActivity().onBackPressed();
 
+            }
+        });
+        Button btn_Cancel=(Button) v.findViewById(R.id.btn_Cancel);
+        btn_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
         ImageButton imgBtn_Back = (ImageButton) v.findViewById(R.id.imgBtn_back);
         imgBtn_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment_main = new MainFragment(mUser);
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_main, fragment_main,"fragment_main");
-                fragmentTransaction.addToBackStack("fragment_main");
-                fragmentTransaction.commit();
+                getActivity().onBackPressed();
             }
         });
         return v;
     }
+
 }

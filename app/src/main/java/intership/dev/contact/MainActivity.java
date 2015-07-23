@@ -31,8 +31,8 @@ public class MainActivity extends Activity {
         Fragment fragment_main = new MainFragment(mArraylist);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_main, fragment_main,"fragment_main");
-        fragmentTransaction.addToBackStack("fragment_main");
+        fragmentTransaction.replace(R.id.frame_main, fragment_main);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
@@ -60,11 +60,11 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        FragmentManager fm = getFragmentManager();
-        if (fm.getBackStackEntryCount() > 0) {
-            fm.popBackStack();
-        } else {
+       // FragmentManager fm = getFragmentManager();
+      //  if (fm.getBackStackEntryCount() > 0) {
+      //      fm.popBackStack();
+      //  } else {
             super.onBackPressed();
-        }
+     //   }
     }
 }
