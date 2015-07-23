@@ -101,8 +101,8 @@ public class Adaptor_User extends BaseAdapter {
 
                     Fragment fragment_main = new InfoUserFragment(mUser, position);
                     FragmentManager fragmentManager = ((Activity) mContext).getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.frame_main, fragment_main).commit();
-                    fragmentManager.beginTransaction().addToBackStack(null);
+                    fragmentManager.beginTransaction().replace(R.id.frame_main, fragment_main,"fragment_main").commit();
+                    fragmentManager.beginTransaction().addToBackStack("fragment_main");
                     notifyDataSetChanged();
                 }
             });

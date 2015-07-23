@@ -25,14 +25,14 @@ public class MainActivity extends Activity {
             User user = new User();
             user.setmAvatar(R.drawable.test);
             user.setmName("Name person" + i);
-            user.setmDescripton("Descripton"+i);
-
+            user.setmDescripton("Descripton" + i);
             mArraylist.add(user);
         }
         Fragment fragment_main = new MainFragment(mArraylist);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_main, fragment_main);
+        fragmentTransaction.replace(R.id.frame_main, fragment_main,"fragment_main");
+        fragmentTransaction.addToBackStack("fragment_main");
         fragmentTransaction.commit();
     }
 

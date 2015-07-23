@@ -29,6 +29,7 @@ public class InfoUserFragment extends Fragment {
     ArrayList<User> mUser;
     int mposition;
     EditText edt_name;
+    EditText edt_Description;
 
     public InfoUserFragment(ArrayList<User> user, int positon) {
         this.mUser = user;
@@ -40,7 +41,7 @@ public class InfoUserFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_info_user, container, false);
         final TextView tv_name = (TextView) v.findViewById(R.id.tv_name);
         ImageView img_avatar=(ImageView)v.findViewById(R.id.img_avatar);
-        EditText edt_Description=(EditText)v.findViewById(R.id.edt_Description);
+        final EditText edt_Description=(EditText)v.findViewById(R.id.edt_Description);
         tv_name.setText(mUser.get(mposition).getmName());
         img_avatar.setImageResource(mUser.get(mposition).getmAvatar());
         edt_Description.setText(mUser.get(mposition).getmDescripton());
@@ -67,11 +68,14 @@ public class InfoUserFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String name = edt_name.getText().toString();
+                String Description=edt_Description.getText().toString();
                 mUser.get(mposition).setmName(name);
+                mUser.get(mposition).setmDescripton(Description);
                 Fragment fragment_main = new MainFragment(mUser);
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_main, fragment_main);
+                fragmentTransaction.replace(R.id.frame_main, fragment_main,"fragment_main");
+                fragmentTransaction.addToBackStack("fragment_main");
                 fragmentTransaction.commit();
 
             }
@@ -83,7 +87,8 @@ public class InfoUserFragment extends Fragment {
                 Fragment fragment_main = new MainFragment(mUser);
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_main, fragment_main);
+                fragmentTransaction.replace(R.id.frame_main, fragment_main,"fragment_main");
+                fragmentTransaction.addToBackStack("fragment_main");
                 fragmentTransaction.commit();
             }
         });
